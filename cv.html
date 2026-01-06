@@ -2,100 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My CV</title>
+    <title>One Page CV</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
+            margin: 20px;
+            line-height: 1.4;
             color: #333;
+            font-size: 14px;
         }
-        h1 {
-            margin-bottom: 5px;
+
+        .cv-container {
+            display: flex;
+            max-width: 900px;
+            margin: auto;
+            gap: 20px;
         }
+
+        /* LEFT */
+        .left {
+            width: 30%;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* ✅ Square Photo */
+        .left img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border: 3px solid #667eea;
+            border-radius: 8px; /* change to 0 for sharp square */
+            margin-bottom: 10px;
+        }
+
+        .left h1 {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
         .subtitle {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
+
+        /* RIGHT */
+        .right {
+            width: 70%;
+        }
+
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
+
         .section h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 5px;
+            font-size: 15px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 5px;
         }
+
         ul {
-            padding-left: 20px;
+            padding-left: 18px;
+            margin: 0;
         }
+
+        li {
+            margin-bottom: 3px;
+        }
+
+        /* Buttons */
         .buttons {
-            margin-top: 30px;
+            text-align: center;
+            margin-top: 20px;
         }
+
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: #667eea;
             color: #fff;
             text-decoration: none;
-            border-radius: 8px;
-            margin-right: 10px;
+            border-radius: 6px;
+            margin: 5px;
+            font-size: 13px;
         }
+
         .btn.outline {
             background: transparent;
             color: #667eea;
             border: 2px solid #667eea;
         }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .cv-container {
+                flex-direction: column;
+            }
+
+            .left,
+            .right {
+                width: 100%;
+            }
+
+            .left {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .buttons {
+                display: none;
+            }
+
+            body {
+                margin: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<h1>Pwint Phyu Thae</h1>
-<p class="subtitle">Internship Applicant | Student</p>
+<div class="cv-container">
 
-<div class="section">
-    <h2>Career Objective</h2>
-    <p>
-        Motivated student seeking an internship opportunity to apply basic technical
-        skills and gain real-world experience.
-    </p>
+    <!-- LEFT -->
+    <div class="left">
+        <img src="profile.jpg" alt="Profile Photo">
+        <h1>Pwint Phyu Thae</h1>
+        <p class="subtitle">Internship Applicant</p>
+
+        <p><strong>Email</strong><br>pwintphyuthae1611@gmail.com</p>
+        <p><strong>Phone</strong><br>09660841347</p>
+
+        <div class="section">
+            <h2>Languages</h2>
+            <p>Myanmar (Native)<br>English (Basic)</p>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+        <div class="section">
+            <h2>Objective</h2>
+            <p>
+                Motivated computer science student seeking an internship to apply technical
+                skills and gain real-world experience.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <p>
+                <strong>University of Computer Studies (Pyay)</strong><br>
+                Computer Science
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>PHP, Laravel</li>
+                <li>Python</li>
+                <li>Microsoft Office</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Projects</h2>
+            <ul>
+                <li>Personal Portfolio Website</li>
+                <li>Simple Web Applications</li>
+            </ul>
+        </div>
+
+    </div>
 </div>
 
-<div class="section">
-    <h2>Education</h2>
-    <p><strong>University of Computer Studies(Pyay)</strong></p>
-    <p>Computer Science</p>
-</div>
-
-<div class="section">
-    <h2>Skills</h2>
-    <ul>
-        <li>HTML & CSS (Basic)</li>
-        <li>JavaScript (Basic)</li>
-        <li>Microsoft Office</li>
-    </ul>
-</div>
-
-<div class="section">
-    <h2>Projects</h2>
-    <ul>
-        <li>Personal Portfolio Website</li>
-        <li>Simple Web Pages</li>
-    </ul>
-</div>
-
-<div class="section">
-    <h2>Languages</h2>
-    <ul>
-        <li>Myanmar – Native</li>
-        <li>English – Basic</li>
-    </ul>
-</div>
-
-<div class="section">
-    <h2>Contact</h2>
-    <p>Email: pwintphyuthae1611@gmail.com</p>
-    <p>Phone: 09660841347</p>
-</div>
-
+<!-- BUTTONS -->
 <div class="buttons">
     <a href="cv.pdf" download class="btn">Download CV (PDF)</a>
     <a href="index.html" class="btn outline">Back to Profile</a>
