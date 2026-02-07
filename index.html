@@ -2,446 +2,241 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pwint Phyu Thae | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pwint Phyu Thae | CS Portfolio</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+        :root {
+            --primary: #64ffda;
+            --bg-dark: #0a192f;
+            --bg-light: #112240;
+            --slate: #8892b0;
+            --white: #e6f1ff;
+            --glass: rgba(100, 255, 218, 0.1);
         }
 
-        /* Body + Background */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: #fff;
-            padding-top: 70px;
+            background-color: var(--bg-dark);
+            color: var(--slate);
+            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        /* Navbar */
-        .navbar {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(0,0,0,0.6);
+        .mono { font-family: 'Fira Code', monospace; color: var(--primary); font-size: 0.9rem; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 1.5rem 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .navbar .logo {
-            font-weight: bold;
-            color: #ffd700;
-            font-size: 22px;
-        }
+        .logo { font-weight: 700; color: var(--primary); text-decoration: none; font-size: 1.5rem; }
 
-        .navbar .nav-list {
-            list-style: none;
-            display: flex;
-        }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--white); transition: 0.3s; font-size: 0.85rem; }
+        .nav-links a:hover { color: var(--primary); }
 
-        .navbar .nav-list li {
-            margin-left: 25px;
-        }
-
-        .navbar .nav-list li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            position: relative;
-        }
-
-        .navbar .nav-list li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: #ffd700;
-            bottom: -5px;
-            left: 0;
-            transition: width 0.3s;
-        }
-
-        .navbar .nav-list li a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 26px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-list {
-                position: absolute;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 60px);
-                background: rgba(0,0,0,0.85);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: left 0.3s ease;
-            }
-            .nav-list.active { left: 0; }
-            .nav-list li { margin: 20px 0; }
-        }
-
-        /* Sections */
-        .section { padding: 70px 20px; text-align: center; }
+        /* Section Layout */
+        section { padding: 120px 10%; min-height: 100vh; }
         .section-title {
-            font-size: 32px;
-            margin-bottom: 40px;
-            background: linear-gradient(90deg, #ffd700, #ff6f91);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            font-weight: 700;
+            display: flex; align-items: center;
+            color: var(--white); font-size: 2rem; margin-bottom: 2rem;
+        }
+        .section-title::after {
+            content: ""; display: block; width: 200px; height: 1px;
+            background: var(--slate); margin-left: 20px; opacity: 0.3;
         }
 
-        /* Card */
+        /* Hero */
+        .hero { display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: clamp(40px, 8vw, 70px); color: var(--white); line-height: 1.1; }
+        .hero h2 { font-size: clamp(30px, 5vw, 45px); color: var(--slate); }
+
+        /* About Layout */
+        .about-wrapper {
+            display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center;
+        }
+        .about-image { position: relative; width: 280px; height: 280px; }
+        .about-image img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
+            border: 2px solid var(--primary); position: relative; z-index: 2;
+        }
+        .about-image::before {
+            content: ""; position: absolute; top: 15px; left: 15px; width: 100%; height: 100%;
+            border: 2px solid var(--primary); border-radius: 10px; z-index: 1;
+        }
+
+        /* Skills Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            width: 320px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--bg-light); padding: 2rem; border-radius: 4px;
+            transition: 0.3s; border: 1px solid transparent; display: flex; flex-direction: column;
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        .card h3 { color: var(--white); margin: 1rem 0; }
+
+        /* Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .tag {
+            background: rgba(100, 255, 218, 0.1); color: var(--primary);
+            padding: 4px 10px; border-radius: 3px; font-size: 0.75rem; font-family: 'Fira Code', monospace;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+        .view-link {
+            margin-top: auto; padding-top: 1.5rem; text-decoration: none;
+            display: flex; align-items: center; gap: 8px; font-size: 0.85rem;
+            color: var(--primary); transition: 0.3s;
         }
+        .view-link:hover { transform: translateX(5px); }
 
-        .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #ffd700;
-            transition: transform 0.3s;
-        }
-        .profile-img:hover { transform: scale(1.05); }
-
-        .role { font-size: 15px; margin: 5px 0; color: #fff; }
-        .bio { font-size: 15px; margin: 15px 0; color: #eee; }
-
-        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #ffd700, #ff6f91);
-            color: #fff;
+            border: 1px solid var(--primary); color: var(--primary);
+            padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 4px;
+            display: inline-block; transition: 0.3s; margin-top: 20px;
+        }
+        .btn:hover { background: var(--glass); }
+
+        /* Social Icons in Contact */
+        .social-links {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            font-size: 1.5rem;
+        }
+        .social-links a {
+            color: var(--slate);
+            transition: 0.3s ease;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
         }
 
-        /* Icons */
-        .icons a {
-            color: #ffd700;
-            font-size: 24px;
-            margin: 0 12px;
-            transition: color 0.3s, transform 0.3s;
+        @media (max-width: 992px) {
+            .about-wrapper { grid-template-columns: 1fr; justify-items: center; text-align: center; }
         }
-        .icons a:hover { color: #ff6f91; transform: scale(1.3); }
-
-        /* About */
-        .about-container {
-            max-width: 750px;
-            margin: auto;
-            text-align: justify;
-            font-size: 16px;
-            line-height: 1.8;
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
         }
-
-        /* Skills */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .skill {
-            background: linear-gradient(135deg, #ffd700, #ff6f91);
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 500;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            cursor: default;
-            transition: transform 0.3s;
-        }
-        .skill:hover { transform: translateY(-5px); }
-
-        /* Projects */
-        .projects-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .project-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px);
-            border-radius: 25px;
-            width: 260px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-        }
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            background: rgba(255,255,255,0.2);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 140px;
-            border-radius: 20px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 15px;
-            transition: transform 0.4s;
-        }
-        .project-card:hover .project-image { transform: scale(1.1); }
-
-        .project-card h3 { font-size: 20px; margin-bottom: 12px; color: #fff; }
-        .project-card p { font-size: 14px; line-height: 1.5; color: #eee; margin-bottom: 15px; }
-
-        /* Project icons */
-        .project-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 12px;
-        }
-        .project-icons a {
-            color: #ffd700;
-            font-size: 22px;
-            padding: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        .project-icons a:hover {
-            color: #ff6f91;
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.3);
-        }
-
-        /* Contact */
-        .contact-container {
-            max-width: 700px;
-            margin: auto;
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-        .contact-info {
-            margin: 25px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(8px);
-            padding: 12px 22px;
-            border-radius: 25px;
-            width: fit-content;
-            transition: transform 0.3s, background 0.3s;
-        }
-        .contact-item i { font-size: 22px; color: #ffd700; }
-        .contact-item a { color: #fff; text-decoration: none; font-weight: 500; }
-        .contact-item:hover { transform: translateY(-3px); background: rgba(255,255,255,0.25); }
-
-        /* Responsive */
-        @media(max-width:768px){
-            .projects-container{ flex-direction: column; gap: 20px; }
-        }
-
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-    <div class="logo">My Portfolio</div>
-    <div class="menu-toggle" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-    </div>
-    <ul class="nav-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+    <nav>
+        <a href="#home" class="logo mono">My Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#about" class="mono">About</a></li>
+            <li><a href="#skills" class="mono">Skills</a></li>
+            <li><a href="#projects" class="mono">Projects</a></li>
+            <li><a href="#contact" class="mono">Contact</a></li>
+        </ul>
+        <a href="cv.html" class="btn mono" style="padding: 0.5rem 1rem; margin: 0;">CV</a>
+    </nav>
 
-<!-- Home -->
-<section id="home" class="section">
-    <div class="card">
-        <img src="profile.jpg" alt="Profile" class="profile-img">
-        <h2>Pwint Phyu Thae</h2>
-        <p class="role">Student | Internship Applicant</p>
-        <p class="bio">Motivated student seeking an internship opportunity to gain real-world experience.</p>
+    <main>
+        <section id="home" class="hero">
+            <span class="mono">Hi, I am</span>
+            <h1>Pwint Phyu Thae.</h1>
+            <h2>Computer Science Student.</h2>
+            <p style="max-width: 550px; margin: 20px 0;">A final-year CS student dedicated to building scalable software and efficient digital solutions with a focus on clean code.</p>
+            <a href="#projects" class="btn mono">Explore My Projects</a>
+        </section>
 
-        <div class="icons">
-            <a href="https://github.com/pwintphyuthae1611-lang/myportfolio" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#projects"><i class="fas fa-globe"></i></a>
-            <a href="cv.html"><i class="fas fa-file-alt"></i></a>
-        </div>
-
-        <a href="cv.html" class="btn">Download CV</a>
-    </div>
-</section>
-
-<!-- About -->
-<section id="about" class="section">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-container">
-        <p>Hello! I am <strong>Pwint Phyu Thae</strong>, a passionate student and aspiring web developer. I love creating clean, modern, and user-friendly websites.</p>
-        <p>Currently, I am focusing on front-end development (HTML, CSS, JavaScript) and continuously learning new tools and frameworks.</p>
-        <!-- <a href="cv.html" class="btn">Download My CV</a> -->
-    </div>
-</section>
-
-<!-- Skills -->
-<section id="skills" class="section">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-container">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">PHP</div>
-        <div class="skill">Python</div>
-        <div class="skill">Git & GitHub</div>
-    </div>
-</section>
-
-<!-- Projects -->
-<section id="projects" class="section">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-container">
-
-        <div class="project-card">
-            <div class="project-image" style="background-image:url('project1.jpg');"></div>
-            <h3>Portfolio Website</h3>
-            <p>Showcase my projects, skills, and resume. Fully responsive, modern design.</p>
-            <div class="project-icons">
-                <a href="#" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" title="Live Demo" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                <a href="#" title="Details"><i class="fas fa-info-circle"></i></a>
+        <section id="about">
+            <h2 class="section-title mono">About Me</h2>
+            <div class="about-wrapper">
+                <div class="about-image">
+                    <img src="profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <p>I am a final-year student at the University of Computer Studies. My fascination with technology lies in solving complex logic problems and transforming them into functional applications that provide real-world value.</p>
+                    <br>
+                    <p>I am highly motivated to transition from academic learning to professional development. Currently, I am seeking an <strong>internship opportunity</strong> where I can contribute to meaningful projects.</p>
+                    <div class="tags" style="margin-top: 20px;">
+                        <span class="tag">JavaScript</span> <span class="tag">Python</span>
+                        <span class="tag">PHP</span> <span class="tag">MySQL</span> <span class="tag">Git</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="project-card">
-            <div class="project-image" style="background-image:url('project2.jpg');"></div>
-            <h3>Profile Card Design</h3>
-            <p>Modern profile card with social icons and CV download button.</p>
-            <div class="project-icons">
-                <a href="#" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" title="Live Demo" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                <a href="#" title="Details"><i class="fas fa-info-circle"></i></a>
+        <section id="skills">
+            <h2 class="section-title mono">Technical Stack</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-terminal fa-2x" style="color:var(--primary)"></i>
+                    <h3>Languages</h3>
+                    <div class="tags">
+                        <span class="tag">JavaScript</span> <span class="tag">Python</span>
+                        <span class="tag">PHP</span> <span class="tag">C++</span> <span class="tag">SQL</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-cubes fa-2x" style="color:var(--primary)"></i>
+                    <h3>Frameworks & Tools</h3>
+                    <div class="tags">
+                        <span class="tag">Laravel</span> <span class="tag">Bootstrap</span>
+                        <span class="tag">Git & GitHub</span> <span class="tag">Postman</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="project-card">
-            <div class="project-image" style="background-image:url('project3.jpg');"></div>
-            <h3>Todo App</h3>
-            <p>Add, delete, and mark tasks as completed. Built with JS, HTML, CSS.</p>
-            <div class="project-icons">
-                <a href="#" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" title="Live Demo" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                <a href="#" title="Details"><i class="fas fa-info-circle"></i></a>
+        <section id="projects">
+            <h2 class="section-title mono">Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <i class="fas fa-cloud-sun fa-2x" style="color:var(--primary)"></i>
+                        <h3>Weather Engine</h3>
+                        <p>Real-time API analysis with dynamic weather updates.</p>
+                    </div>
+                    <a href="#" class="view-link mono">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card">
+                    <div>
+                        <i class="fas fa-tasks fa-2x" style="color:var(--primary)"></i>
+                        <h3>Task Architect</h3>
+                        <p>LocalStorage persistent productivity tool.</p>
+                    </div>
+                    <a href="#" class="view-link mono">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="project-card">
-            <div class="project-image" style="background-image:url('project4.jpg');"></div>
-            <h3>Weather App</h3>
-            <p>Responsive weather app fetching real-time API data. Built with JS, HTML, CSS.</p>
-            <div class="project-icons">
-                <a href="#" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" title="Live Demo" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                <a href="#" title="Details"><i class="fas fa-info-circle"></i></a>
+        <section id="contact" style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h2 class="mono">Contact</h2>
+            <h1 style="color: var(--white); margin: 20px 0;">Get In Touch</h1>
+            <p style="max-width: 500px;">I'm currently looking for new opportunities. Whether you have a question or just want to connect, feel free to reach out!</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/pwintphyuthae1611-lang" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/your-profile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:pwintphyuthae1611@gmail.com" title="Gmail"><i class="fas fa-envelope"></i></a>
             </div>
-        </div>
 
-    </div>
-</section>
+            <a href="mailto:pwintphyuthae1611@gmail.com" class="btn mono" style="margin-top: 40px;">Say Hello</a>
+        </section>
+    </main>
 
-<!-- Contact -->
-<section id="contact" class="section">
-    <h2 class="section-title">Contact Me</h2>
-    <div class="contact-container">
-        <p>If you want to get in touch, feel free to reach out via email or check my GitHub profile.</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:pwintphyuthae1611@gmail.com">pwintphyuthae1611@gmail.com</a>
-            </div>
-            <div class="contact-item">
-                <i class="fab fa-github"></i>
-                <a href="https://github.com/pwintphyuthae1611-lang" target="_blank">pwintphyuthae1611-lang</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Hamburger Menu JS -->
-<script>
-const menuToggle = document.getElementById('mobile-menu');
-const navList = document.querySelector('.nav-list');
-menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
-</script>
+    <footer style="text-align: center; padding: 40px; font-size: 0.8rem;">
+        <p class="mono">Designed & Built by Pwint Phyu Thae &copy; 2026</p>
+    </footer>
 
 </body>
 </html>
-
