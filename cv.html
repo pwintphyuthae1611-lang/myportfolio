@@ -2,193 +2,339 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>One Page CV</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Pwint Phyu Thae - Resume</title>
     <style>
+        :root {
+            --dark-blue: #1a365d;
+            --light-gray: #e2e8f0;
+            --text-gray: #4a5568;
+            --sidebar-bg: #f7fafc;
+            --accent-pink: #ff2d75;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.4;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .cv-container {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #cbd5e0;
             display: flex;
-            max-width: 900px;
-            margin: auto;
-            gap: 20px;
+            justify-content: center;
+            color: #2d3748;
         }
 
-        /* LEFT */
-        .left {
-            width: 30%;
-            text-align: center;
-            font-size: 13px;
+        .resume-container {
+            background-color: white;
+            width: 800px;
+            height: 1050px;
+            display: flex;
+            position: relative; /* မြဉ်းကြောင်းအတွက် position သတ်မှတ်ချက် */
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            margin: 10px;
+            overflow: hidden;
         }
 
-        /* ✅ Square Photo */
-        .left img {
-            width: 130px;
-            height: 130px;
+        /* အလယ်က မြဉ်းကြောင်းကို ပိုသေချာအောင် Pseudo-element သုံးထားပါတယ် */
+        .resume-container::before {
+            content: "";
+            position: absolute;
+            left: 32%;
+            top: 0;
+            bottom: 0;
+            width: 1.5px;
+            background-color: #d1d5db; /* မြဉ်းကြောင်းအရောင် */
+            z-index: 10;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 32%;
+            background-color: var(--sidebar-bg);
+            padding: 25px 20px;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            background-color: #ddd;
+            border-radius: 15px;
+            margin-bottom: 25px;
             object-fit: cover;
-            border: 3px solid #667eea;
-            border-radius: 8px; /* change to 0 for sharp square */
+            border: 4px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            border-bottom: 2px solid #2d3748;
+            padding-bottom: 3px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            word-break: break-all;
+        }
+
+        .contact-item span {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+        }
+
+        .skill-group {
             margin-bottom: 10px;
         }
 
-        .left h1 {
-            font-size: 20px;
+        .skill-header {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--dark-blue);
             margin-bottom: 2px;
         }
 
-        .subtitle {
-            color: #666;
+        .skill-tags {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            line-height: 1.3;
+        }
+
+        /* Main Content */
+        .main-content {
+            width: 68%;
+            background-color: white;
+        }
+
+        .header-banner {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 30px 35px;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .header-banner h1 {
+            margin: 0;
+            font-size: 2.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-banner p {
+            margin: 3px 0 0;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .content-padding {
+            padding: 20px 35px;
+        }
+
+        .main-section {
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--dark-blue);
+            padding-bottom: 3px;
             margin-bottom: 10px;
+            color: #1a202c;
+            font-size: 1rem;
         }
 
-        /* RIGHT */
-        .right {
-            width: 70%;
+        .profile-text {
+            line-height: 1.5;
+            color: var(--text-gray);
+            font-size: 0.88rem;
         }
 
-        .section {
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .project-block {
             margin-bottom: 12px;
         }
 
-        .section h2 {
-            font-size: 15px;
-            border-bottom: 1px solid #333;
-            margin-bottom: 5px;
+        .project-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #2d3748;
         }
 
-        ul {
-            padding-left: 18px;
-            margin: 0;
-        }
-
-        li {
+        .project-role {
+            font-size: 0.78rem;
+            color: var(--accent-pink);
+            font-style: italic;
             margin-bottom: 3px;
         }
 
-        /* Buttons */
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
+        .project-desc {
+            margin: 3px 0 8px 15px;
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+            padding-left: 0;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background: #667eea;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            margin: 5px;
-            font-size: 13px;
+        .date {
+            color: #718096;
+            font-size: 0.75rem;
         }
 
-        .btn.outline {
-            background: transparent;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .cv-container {
-                flex-direction: column;
-            }
-
-            .left,
-            .right {
-                width: 100%;
-            }
-
-            .left {
-                border-bottom: 1px solid #eee;
-                padding-bottom: 15px;
-                margin-bottom: 15px;
-            }
-        }
-
-        /* Print */
         @media print {
-            .buttons {
-                display: none;
+            body { background: none; margin: 0; -webkit-print-color-adjust: exact; }
+            .resume-container { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+            .resume-container::before { 
+                background-color: #ccc !important; /* PDF မှာ မြဉ်းကြောင်း သေချာပေါ်အောင် */
+                -webkit-print-color-adjust: exact;
             }
-
-            body {
-                margin: 10px;
-            }
+            @page { margin: 0; size: A4; }
         }
     </style>
 </head>
 <body>
 
-<div class="cv-container">
+<div class="resume-container">
+    <div class="sidebar">
+        <img src="profile.jpg" alt="Pwint Phyu Thae" class="profile-img">
+        
+        <div class="sidebar-section">
+            <div class="sidebar-title">Contact</div>
+            <div class="contact-item"><span>📞</span> 09 660 841 347</div>
+            <div class="contact-item"><span>✉️</span> pwintphyuthae1611@gmail.com</div>
+            <div class="contact-item"><span>📍</span> Pyay, Bago Region</div>
+            <div class="contact-item"><span>🔗</span> github.com/your-username</div>
+            <div class="contact-item"><span>💼</span> linkedin.com/in/your-profile</div>
+        </div>
 
-    <!-- LEFT -->
-    <div class="left">
-        <img src="profile.jpg" alt="Profile Photo">
-        <h1>Pwint Phyu Thae</h1>
-        <p class="subtitle">Internship Applicant</p>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Technical Stack</div>
+            <div class="skill-group">
+                <div class="skill-header">Languages</div>
+                <div class="skill-tags">Python, PHP, C++, SQL</div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-header">Frameworks & Tools</div>
+                <div class="skill-tags">Laravel, Bootstrap, Git, Postman</div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-header">Web Development</div>
+                <div class="skill-tags">HTML5, CSS3, JavaScript</div>
+            </div>
+        </div>
 
-        <p><strong>Email</strong><br>pwintphyuthae1611@gmail.com</p>
-        <p><strong>Phone</strong><br>09660841347</p>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Soft Skills</div>
+            <div class="skill-tags">
+                • Problem Solving<br>
+                • Effective Communication<br>
+                • Team Collaboration<br>
+                • Fast Learner
+            </div>
+        </div>
 
-        <div class="section">
-            <h2>Languages</h2>
-            <p>Myanmar (Native)<br>English (Basic)</p>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Languages</div>
+            <div class="skill-tags">
+                English (Intermediate)<br>
+                Myanmar (Native)
+            </div>
         </div>
     </div>
 
-    <!-- RIGHT -->
-    <div class="right">
-
-        <div class="section">
-            <h2>Objective</h2>
-            <p>
-                Motivated computer science student seeking an internship to apply technical
-                skills and gain real-world experience.
-            </p>
+    <div class="main-content">
+        <div class="header-banner">
+            <h1>PWINT PHYU THAE</h1>
+            <p>Computer Science Student | Internship Applicant</p>
         </div>
 
-        <div class="section">
-            <h2>Education</h2>
-            <p>
-                <strong>University of Computer Studies (Pyay)</strong><br>
-                Computer Science
-            </p>
-        </div>
+        <div class="content-padding">
+            <section class="main-section">
+                <div class="main-title">Profile Summary</div>
+                <div class="profile-text">
+                    Highly motivated Final Year Computer Science student at the University of Computer Studies (Pyay). 
+                    Passionate about software development and building scalable web applications. 
+                    I am seeking a professional internship to apply my technical skills in <strong>Laravel</strong> and <strong>Modern Web Technologies</strong> while contributing to impactful projects.
+                </div>
+            </section>
 
-        <div class="section">
-            <h2>Skills</h2>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>PHP, Laravel</li>
-                <li>Python</li>
-                <li>Microsoft Office</li>
-            </ul>
-        </div>
+            <section class="main-section">
+                <div class="main-title">Projects Portfolio</div>
+                
+                <div class="project-block">
+                    <div class="exp-header">
+                        <span class="project-name">Beauty Parlour Appointment System</span>
+                        <span class="date">PHP, Laravel, MySQL</span>
+                    </div>
+                    <div class="project-role">Role: Full-stack Developer</div>
+                    <ul class="project-desc">
+                        <li>Designed a web platform to automate salon bookings, reducing manual paperwork.</li>
+                        <li>Built a secure admin dashboard for staff and schedule management.</li>
+                        <li>Integrated MySQL database to handle real-time appointment data.</li>
+                    </ul>
+                </div>
 
-        <div class="section">
-            <h2>Projects</h2>
-            <ul>
-                <li>Personal Portfolio Website</li>
-                <li>Simple Web Applications</li>
-            </ul>
-        </div>
+                <div class="project-block">
+                    <div class="exp-header">
+                        <span class="project-name">Organic Food E-commerce UI</span>
+                        <span class="date">HTML, CSS, JavaScript</span>
+                    </div>
+                    <div class="project-role">Role: Frontend Developer</div>
+                    <ul class="project-desc">
+                        <li>Developed a responsive UI with features like dynamic filtering and cart management.</li>
+                        <li>Optimized website loading speed for a better mobile user experience.</li>
+                    </ul>
+                </div>
 
+                <div class="project-block">
+                    <div class="exp-header">
+                        <span class="project-name">Course Management System</span>
+                        <span class="date">OODD, Java</span>
+                    </div>
+                    <div class="project-role">Role: System Analyst & Developer</div>
+                    <ul class="project-desc">
+                        <li>Applied Object-Oriented Design principles to architect the system.</li>
+                        <li>Created comprehensive UML diagrams (Class, Sequence) for documentation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <div class="main-title">Education</div>
+                <div class="exp-header">
+                    <span>University of Computer Studies (Pyay)</span>
+                    <span class="date">2019 - Present</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-gray);">
+                    Bachelor of Computer Science (Final Year)<br>
+                    <strong>Specialization:</strong> Computer Science
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-
-<!-- BUTTONS -->
-<div class="buttons">
-    <a href="cv.pdf" download class="btn">Download CV (PDF)</a>
-    <a href="index.html" class="btn outline">Back to Profile</a>
 </div>
 
 </body>
